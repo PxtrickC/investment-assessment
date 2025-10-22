@@ -188,7 +188,7 @@ export default function Assessment() {
       {/* Input */}
       {!isComplete && (
         <div className="fixed bottom-0 left-0 right-0 border-t bg-white">
-          <div className="container py-4 max-w-3xl">
+          <div className="container py-4 pb-20 md:pb-4 max-w-3xl">
             <div className="flex gap-2">
               <Input
                 value={input}
