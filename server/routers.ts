@@ -21,12 +21,17 @@ export const appRouter = router({
   // Assessment router
   assessment: router({
     // 開始新的評估會話
-    start: publicProcedure.mutation(async ({ ctx }) => {
+    start: publicProcedure
+      .input(z.object({
+        language: z.enum(['zh', 'en']).optional().default('zh')
+      }).optional())
+      .mutation(async ({ ctx, input }) => {
       const { createAssessmentSession } = await import('./assessmentDb');
       const { getOpeningQuestion } = await import('./assessmentEngine');
       
       const session = await createAssessmentSession(ctx.user?.id);
-      const openingQuestion = getOpeningQuestion();
+      const language = input?.language || 'zh';
+      const openingQuestion = getOpeningQuestion(language);
       
       return {
         sessionId: session.id,
@@ -40,7 +45,8 @@ export const appRouter = router({
     chat: publicProcedure
       .input(z.object({
         sessionId: z.string(),
-        message: z.string()
+        message: z.string(),
+        language: z.enum(['zh', 'en']).optional().default('zh')
       }))
       .mutation(async ({ input }) => {
         const { 
@@ -65,7 +71,8 @@ export const appRouter = router({
           conversationHistory,
           session.stage as any,
           session.conversationCount,
-          currentScores
+          currentScores,
+          input.language
         );
 
         // 更新對話歷史

@@ -15,7 +15,7 @@ interface Message {
 
 export default function Assessment() {
   const [, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -30,7 +30,7 @@ export default function Assessment() {
   // 開始評估
   useEffect(() => {
     if (!sessionId) {
-      startMutation.mutate(undefined, {
+      startMutation.mutate({ language }, {
         onSuccess: (data) => {
           setSessionId(data.sessionId);
           setMessages([{ role: 'assistant', content: data.question }]);
@@ -55,7 +55,7 @@ export default function Assessment() {
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
 
     chatMutation.mutate(
-      { sessionId, message: userMessage },
+      { sessionId, message: userMessage, language },
       {
         onSuccess: (data) => {
           setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
