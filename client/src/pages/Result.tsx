@@ -88,24 +88,24 @@ export default function Result() {
               <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>{t('result.scores.risk.tolerance')}</span>
-                  <span className="font-semibold">{scores.risk?.raw || 0}/100</span>
+                  <span className="font-semibold">{Math.round(scores.risk?.raw || 0)}/100</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-blue-600 rounded-full transition-all"
-                    style={{ width: `${scores.risk?.raw || 0}%` }}
+                    style={{ width: `${Math.round(scores.risk?.raw || 0)}%` }}
                   />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>{t('result.scores.risk.horizon')}</span>
-                  <span className="font-semibold">{scores.timeHorizon?.raw || 0}/100</span>
+                  <span className="font-semibold">{Math.round(scores.timeHorizon?.raw || 0)}/100</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-green-600 rounded-full transition-all"
-                    style={{ width: `${scores.timeHorizon?.raw || 0}%` }}
+                    style={{ width: `${Math.round(scores.timeHorizon?.raw || 0)}%` }}
                   />
                 </div>
               </div>
@@ -121,36 +121,36 @@ export default function Result() {
               <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>{t('result.scores.esg.environmental')}</span>
-                  <span className="font-semibold">{scores.esg?.environmental || 0}/100</span>
+                  <span className="font-semibold">{Math.round(scores.esg?.environmental || 0)}/100</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-green-600 rounded-full transition-all"
-                    style={{ width: `${scores.esg?.environmental || 0}%` }}
+                    style={{ width: `${Math.round(scores.esg?.environmental || 0)}%` }}
                   />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>{t('result.scores.esg.social')}</span>
-                  <span className="font-semibold">{scores.esg?.social || 0}/100</span>
+                  <span className="font-semibold">{Math.round(scores.esg?.social || 0)}/100</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-orange-600 rounded-full transition-all"
-                    style={{ width: `${scores.esg?.social || 0}%` }}
+                    style={{ width: `${Math.round(scores.esg?.social || 0)}%` }}
                   />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between text-sm mb-1">
                   <span>{t('result.scores.esg.governance')}</span>
-                  <span className="font-semibold">{scores.esg?.governance || 0}/100</span>
+                  <span className="font-semibold">{Math.round(scores.esg?.governance || 0)}/100</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-purple-600 rounded-full transition-all"
-                    style={{ width: `${scores.esg?.governance || 0}%` }}
+                    style={{ width: `${Math.round(scores.esg?.governance || 0)}%` }}
                   />
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function Result() {
                     <p className="text-sm text-gray-600">{language === 'zh' ? track.trackNameEn : track.trackName}</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-blue-600">{track.matchScore}%</div>
+                    <div className="text-2xl font-bold text-blue-600">{Math.round(track.matchScore)}%</div>
                     <div className="text-xs text-gray-600">{t('result.tracks.match')}</div>
                   </div>
                 </div>
